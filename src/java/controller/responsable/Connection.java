@@ -12,7 +12,7 @@ import java.util.Vector;
 
 public class Connection extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String nom = req.getParameter("nom");
         String mdp = req.getParameter("mdp");
         Vector<Model> models = null;
@@ -26,7 +26,11 @@ public class Connection extends HttpServlet {
             session.setAttribute("id_responsable", responsable.getId());
             resp.sendRedirect("acceuil.jsp");
         } catch (Exception e) {
-            resp.sendRedirect("login_responsable.jsp");
+            try {
+                resp.sendRedirect("login_responsable.jsp");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }
