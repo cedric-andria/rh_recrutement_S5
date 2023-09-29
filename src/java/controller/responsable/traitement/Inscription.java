@@ -1,4 +1,4 @@
-package controller.responsable;
+package controller.responsable.traitement;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,7 +10,7 @@ import util.Model;
 
 import java.util.Vector;
 
-@WebServlet (name = "inscriptionResponsable", value = "/inscription")
+@WebServlet (name = "traitementInscription", value = "/traitementInscription")
 public class Inscription extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
@@ -28,7 +28,7 @@ public class Inscription extends HttpServlet {
             responsableService.setId_service(id_service);
             responsableService.setId_responsable(responsable.getId());
             responsableService.insert();
-            req.getRequestDispatcher("login_responsable.jsp").forward(req, resp);
+            req.getRequestDispatcher("connection_responsable.jsp").forward(req, resp);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

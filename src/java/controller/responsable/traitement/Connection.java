@@ -1,5 +1,7 @@
-package controller.responsable;
+package controller.responsable.traitement;
 
+import annotation.Constraint;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import util.Model;
 import java.io.IOException;
 import java.util.Vector;
 
+@WebServlet (name = "traitementConnection", value = "/traitementConnection")
 public class Connection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
@@ -27,7 +30,7 @@ public class Connection extends HttpServlet {
             resp.sendRedirect("acceuil.jsp");
         } catch (Exception e) {
             try {
-                resp.sendRedirect("login_responsable.jsp");
+                resp.sendRedirect("connection_responsable.jsp");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

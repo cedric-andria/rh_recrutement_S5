@@ -28,6 +28,4 @@ public class URLConnection {
         this.url = url;
         this.driver = driver;
     }
-    
-
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Connection model.Responsable</h1>
-    <form action="" method="post">
+    <form action="traitementConnection" method="post">
         <label>
             <input type="text" placeholder="nom" name="nom">
         </label>
@@ -20,5 +20,6 @@
             Se connecter
         </button>
     </form>
+    <a href="inscription">S'inscrire</a>
 </body>
 </html>
