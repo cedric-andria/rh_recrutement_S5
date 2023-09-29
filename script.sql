@@ -1,4 +1,4 @@
--- Table Responsable_service (Jérémie) : misy FK Service sy identifiant de connexion
+-- Table Responsable_service (Jérémie) : misy FK model.Service sy identifiant de connexion
 create table responsable (
     id serial primary key,
     nom varchar not null,
