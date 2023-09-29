@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conf>
+    <driver>org.postgresql.Driver</driver>
+    <type>postgresql</type>
+    <host>localhost</host>
+    <port>5432</port>
+    <database>rh</database>
+    <user>postgres</user>
+    <password>root</password>
+</conf>
