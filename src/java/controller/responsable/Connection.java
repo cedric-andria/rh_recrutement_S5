@@ -1,4 +1,4 @@
-package controller;
+package controller.responsable;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,8 +26,7 @@ public class Connection extends HttpServlet {
             session.setAttribute("id_responsable", responsable.getId());
             resp.sendRedirect("acceuil.jsp");
         } catch (Exception e) {
-            resp.sendRedirect("login.jsp");
-            e.printStackTrace();
+            resp.sendRedirect("login_responsable.jsp");
         }
     }
 }

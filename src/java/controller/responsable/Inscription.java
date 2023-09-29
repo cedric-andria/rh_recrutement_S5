@@ -1,4 +1,4 @@
-package controller;
+package controller.responsable;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,7 +28,7 @@ public class Inscription extends HttpServlet {
             responsableService.setId_service(id_service);
             responsableService.setId_responsable(responsable.getId());
             responsableService.insert();
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("login_responsable.jsp").forward(req, resp);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
