@@ -25,8 +25,12 @@ public class ServletVerifLoginPostulant extends HttpServlet {
             String mdp = request.getParameter("mdp");
 
             Postulant p = new Postulant();
+            p = p.getPostulant(co, mail, mdp);
             
-            if(p.getPostulant(co, mail, mdp) != null) {
+            if(p != null) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("idService", p.getId());
+                out.print(session.getAttribute("idService"));
                 this.getServletContext().getRequestDispatcher("/web/success.jsp").forward(request, response);
             }
 
