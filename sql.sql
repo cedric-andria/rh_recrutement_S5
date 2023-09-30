@@ -1,4 +1,9 @@
 -- Table Responsable_service (Jérémie) : misy FK Service sy identifiant de connexion
+create database baserecrutement;
+create user baserecrutement with password 'baserecrutement';
+grant all privileges on database baserecrutement to baserecrutement;
+-- \c baserecrutement baserecrutement;
+
 create table responsable (
     id serial primary key,
     nom varchar not null,
@@ -33,7 +38,7 @@ CREATE TABLE postulant (
    NOM VARCHAR,
    PRENOM VARCHAR,
    DATE_NAISSANCE DATE,
-   sexe integer check (0<= postulant.sexe <= 1 ),
+   sexe integer check (postulant.sexe between 0 and 1),
    MAIL VARCHAR(100),
    MDP VARCHAR(50)
 );
