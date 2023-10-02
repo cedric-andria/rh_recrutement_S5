@@ -5,10 +5,14 @@ create table responsable (
     mdp varchar not null
 );
 
+INSERT INTO responsable VALUES(default, 'rakoto', 'rakoto');
+
 create table service (
     id serial primary key,
     nom varchar not null
 );
+
+INSERT INTO service VALUES(default, 'Comptabilite');
 
 CREATE TABLE besoin_service (
     ID SERIAL PRIMARY KEY,
@@ -28,15 +32,23 @@ create table responsable_service (
   foreign key (id_responsable) references responsable (id)
 );
 
+INSERT INTO responsable_service VALUES(default, 1, 1);
+
+CREATE VIEW V_poste_by_service AS SELECT  responsable_service.id_responsable, poste.id, poste.nom, poste.id_service FROM responsable_service 
+        JOIN service ON responsable_service.id_service = service.id
+        JOIN poste ON service.id = poste.id_service;
+
 CREATE TABLE postulant (
    ID SERIAL PRIMARY KEY,
    NOM VARCHAR,
    PRENOM VARCHAR,
    DATE_NAISSANCE DATE,
-   sexe integer check (0<= postulant.sexe <= 1 ),
+   sexe integer check (postulant.sexe between 0 and 1),
    MAIL VARCHAR(100),
    MDP VARCHAR(50)
 );
+
+INSERT INTO postulant VALUES(default, 'RANDRIANARIVELO', 'Stephan', '18-09-2003', 1, 'steph@gmail.com', 'steph');
 -- CritèresPoste (Jérémie) : misy FK Poste
 CREATE TABLE poste (
     ID SERIAL PRIMARY KEY,
@@ -44,6 +56,8 @@ CREATE TABLE poste (
     ID_SERVICE INTEGER,
     FOREIGN KEY (ID_SERVICE) REFERENCES service (ID)
 );
+
+INSERT INTO POSTE VALUES(default, 'Responsable client', 1);
 
 create table diplome (
     id serial primary key,
@@ -203,6 +217,8 @@ CREATE TABLE postulant (
     MDP VARCHAR,
     FOREIGN KEY (ID_POSTE) REFERENCES poste (ID)
 );
+
+
 
 create table entretien (
     id serial primary key,

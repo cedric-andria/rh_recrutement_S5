@@ -9,13 +9,13 @@ import java.sql.ResultSet;
 
 public class Postulant {
 
-    int id;
-    String nom;
-    String prenom;
-    Date dateNaissance;
-    int sexe;
-    String mail;
-    String mdp;
+    private int id;
+    private String nom;
+    private String prenom;
+    private Date date_naissance;
+    private int sexe;
+    private String mail;
+    private String mdp;
     
     public Postulant()
     {
@@ -29,25 +29,20 @@ public class Postulant {
         setId(id);
         setNom(nom);
         setPrenom(prenom);
-        setDateNaissance(dateNaissance);
+        setDate_naissance(dateNaissance);
         setSexe(sexe);
         setMail(mail);
         setMdp(mdp);
     }
 
-    public Connection connectPostgre() throws Exception
-    {
-        Connexion c = new Connexion();
-        Connection co = c.connexPostgres();
-
-        return co;
-    }
 
     public Postulant getPostulant(Connection c, String mail, String mdp) throws Exception
     {
+
         if(c == null)
         {
-            c = connectPostgre();
+            Connexion co = new Connexion();
+            c = co.connectPostgre();
         }
 
         Postulant postulant = null;
@@ -91,12 +86,12 @@ public class Postulant {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
+    public Date getDate_naissance() {
+        return date_naissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setDate_naissance(Date date_naissance) {
+        this.date_naissance = date_naissance;
     }
 
     public int getSexe() {

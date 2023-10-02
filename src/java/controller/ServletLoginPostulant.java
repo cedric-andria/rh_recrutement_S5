@@ -4,6 +4,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import java.sql.*;
 
 @WebServlet(name="LoginPostulant", urlPatterns = {"/logPostulant"})
 public class ServletLoginPostulant extends HttpServlet {
