@@ -5,23 +5,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Service;
-import util.Model;
 
 import java.util.Vector;
 
-@WebServlet (name = "inscription", value = "/inscription")
+@WebServlet (value = "/inscription")
 public class Inscription extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            Vector<Model> models = new Service().select();
-            Vector<Service> services = new Vector<>();
-            for (Model model : models) {
-                Service service = (Service) model;
-                services.add(service);
-            }
+            Vector<Service> services = new Service().getAll(null);
             req.setAttribute("services", services);
-            resp.sendRedirect("inscription_responsable.jsp");
+            req.getRequestDispatcher("inscription_responsable.jsp").forward(req, resp);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

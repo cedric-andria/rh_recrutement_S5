@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/servlet-api.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/postgresql-42.5.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/DOM.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/lib/DOM.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/lib/postgresql-42.5.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -4,7 +4,7 @@
     <type>postgresql</type>
     <host>localhost</host>
     <port>5432</port>
-    <database>rh</database>
+    <database>recrutement</database>
     <user>postgres</user>
     <password>root</password>
 </conf>

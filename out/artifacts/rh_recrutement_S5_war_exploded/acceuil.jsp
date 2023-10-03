@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome
+    Welcome <% out.println(session.getAttribute("id_responsable") + " " + session.getAttribute("id_service")); %>
+    <a href="insertion">Inserer les criteres</a>
 </body>
 </html>

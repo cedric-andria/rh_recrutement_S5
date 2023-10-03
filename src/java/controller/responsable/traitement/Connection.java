@@ -1,39 +1,36 @@
 package controller.responsable.traitement;
 
-import annotation.Constraint;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Responsable;
-import util.Model;
+import model.Responsable_service;
 
 import java.io.IOException;
-import java.util.Vector;
 
 @WebServlet (name = "traitementConnection", value = "/traitementConnection")
 public class Connection extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String nom = req.getParameter("nom");
         String mdp = req.getParameter("mdp");
-        Vector<Model> models = null;
+        Responsable responsable = new Responsable();
+        responsable.setNom(nom);
+        responsable.setMdp(mdp);
         try {
-            Responsable responsable = new Responsable();
-            responsable.setNom(nom);
-            responsable.setMdp(mdp);
-            models = responsable.select();
-            responsable = (Responsable) models.get(0);
+            responsable = responsable.getResponsable(null);
             HttpSession session = req.getSession();
-            session.setAttribute("id_responsable", responsable.getId());
-            resp.sendRedirect("acceuil.jsp");
+            int id_responsable = responsable.getId();
+            session.setAttribute("id_responsable", id_responsable);
+            Responsable_service responsableService = new Responsable_service();
+            responsableService.setId_responsable(id_responsable);
+            responsableService.getResponsable_service(null);
+            session.setAttribute("id_service", responsableService.getId_service());
+            req.getRequestDispatcher("acceuil.jsp").forward(req, resp);
         } catch (Exception e) {
-            try {
-                resp.sendRedirect("connection_responsable.jsp");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            resp.sendRedirect("connection_responsable.jsp");
         }
     }
 }
