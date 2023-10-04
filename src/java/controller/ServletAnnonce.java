@@ -23,7 +23,7 @@ public class ServletAnnonce extends HttpServlet {
                     request.setAttribute("annonce", allAnnonce);
 
 
-                    this.getServletContext().getRequestDispatcher("/web/annonce.jsp").forward(request, response);
+                    this.getServletContext().getRequestDispatcher("/frontoffice/public/annonce.jsp").forward(request, response);
                 } catch(Exception e){
                    out.print(e);
                 }

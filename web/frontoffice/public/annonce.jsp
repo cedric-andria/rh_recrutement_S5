@@ -32,8 +32,8 @@
                 </div>
                 <div class="right">
                     <ul>
-                        <li><a href="">Accueil</a></li>
-                        <li><a href="">Annonces</a></li>
+                        <li><a href="pageAnnonce">Accueil</a></li>
+                        <li><a href="pageAnnonce">Annonces</a></li>
                         <li><a href="">Résultats</a></li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                                     Diplome: <span class="text-bold"><% out.print(a.getDiplome()); %></span>
                                 </blockquote>
                                 <div class="">
-                                    <button class="btn waves-effect">Postuler</button>
+                                    <a href="versSubmitCv?id_poste=<%= a.getId_poste() %>"><button class="btn waves-effect">Postuler</button></a>
                                 </div>
                             </div>
                         </div>

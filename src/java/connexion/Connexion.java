@@ -7,7 +7,7 @@ public class Connexion {
     public Connection connexPostgres() throws Exception{
       
         Class.forName("org.postgresql.Driver");
-        Connection co = DriverManager.getConnection("jdbc:postgresql://localhost:5432/baserecrutement", "postgres", "teenwolf45");
+        Connection co = DriverManager.getConnection("jdbc:postgresql://localhost:5432/baserecrutement", "baserecrutement", "baserecrutement");
         
         return co;
     }
