@@ -1,14 +1,16 @@
 package controller;
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.sql.*;
-import java.util.Vector;
-
-import modele.Service;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modele.Poste;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
 
 @WebServlet(name="PageBesoinService", urlPatterns = {"/pageBesoinService"})
 public class ServletSoumissionBesoinService extends HttpServlet {

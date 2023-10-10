@@ -9,6 +9,6 @@
 </head>
 <body>
     Welcome <% out.println(session.getAttribute("id_responsable") + " " + session.getAttribute("id_service")); %>
-    <a href="insertion">Inserer les criteres</a>
+    <a href="insertion">Insérer les critères</a>
 </body>
 </html>
