@@ -1,10 +1,12 @@
 package controller;
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.sql.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 @WebServlet(name="LoginPostulant", urlPatterns = {"/logPostulant"})
 public class ServletLoginPostulant extends HttpServlet {

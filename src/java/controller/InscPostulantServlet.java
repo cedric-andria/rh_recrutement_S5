@@ -5,19 +5,17 @@
  */
 package controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import model.Postulant;
 import connection.ConnectionJava;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Postulant;
+
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
 
 /**
  *

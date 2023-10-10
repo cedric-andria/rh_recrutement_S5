@@ -1,17 +1,16 @@
 package controller.critere.lien;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import model.Diplome;
 import model.Experience;
 import model.Langue;
-import model.Poste;
 
 import java.util.Vector;
 
-@WebServlet (value = "/insertion")
+@WebServlet(value = "/insertion")
 public class Insertion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {

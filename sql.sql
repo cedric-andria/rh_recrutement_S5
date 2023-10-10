@@ -265,8 +265,69 @@ create table reponse_test (
 create table entretien (
     id serial primary key,
     id_poste integer,
-    id_postulant integer,
     date date not null,
-    foreign key (id_postulant) references postulant (id),
     foreign key (id_poste) references poste (id)
+);
+
+-- Question et reponse entretien --
+create table question_entretien (
+    id serial primary key,
+    id_entretien integer,
+    question varchar not null,
+    coefficient double precision default 0,
+    foreign key (id_entretien) references entretien(id)
+);
+
+create table reponse_entretien(
+    id serial primary key,
+    id_question integer,
+    reponse varchar not null,
+    etat integer check (etat between 0 and 1),
+    foreign key (id_question) references question_entretien (ID)
+);
+
+create table reponse_entretien_postulant (
+    id serial primary key,
+    id_entretien integer,
+    id_postulant integer,
+    id_question integer,
+    id_reponse integer,
+    foreign key (id_entretien) references entretien (id),
+    foreign key (id_postulant) references postulant(id),
+    foreign key (id_question) references question_entretien(id),
+    foreign key (id_reponse) references reponse_entretien(id)
+);
+
+create or replace view note_by_question_by_entretien as
+    SELECT id_question, sum(coefficient * etat) as note from question_entretien
+        join reponse_entretien re on question_entretien.id = re.id_question
+    where etat = 1
+    group by id_question;
+
+create or replace view resultat_entretien_postulant as
+    select question_entretien.id_entretien as id_entretien, entretien.id_poste, id_postulant,
+        reponse_entretien.id_question as id_question, sum(coefficient * etat) as note from question_entretien
+            join reponse_entretien on question_entretien.id = reponse_entretien.id_question
+            join reponse_entretien_postulant on question_entretien.id = reponse_entretien_postulant.id_question
+                and reponse_entretien.id = reponse_entretien_postulant.id_reponse
+            join entretien on question_entretien.id_entretien = entretien.id
+    group by question_entretien.id_entretien, entretien.id_poste, id_postulant, reponse_entretien.id_question;
+
+create or replace view resultat_entretien as
+    select id_entretien, id_postulant, sum(
+        case
+            when note_by_question_by_entretien.note != resultat_entretien_postulant.note then 0
+            else note_by_question_by_entretien.note
+            end) as note
+    from note_by_question_by_entretien
+         join resultat_entretien_postulant on resultat_entretien_postulant.id_question = note_by_question_by_entretien.id_question
+    group by id_entretien, id_postulant
+    ORDER BY note desc;
+
+create table employe (
+    id serial primary key,
+    id_postulant integer,
+    id_poste integer,
+    foreign key (id_postulant) references postulant (id),
+    foreign key (id_poste) references poste
 );
