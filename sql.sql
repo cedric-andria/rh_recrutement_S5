@@ -204,6 +204,8 @@ CREATE TABLE test (
     foreign key (ID_POSTE) references poste (id)
 );
 
+INSERT INTO test VALUES(default, 1, NOW());
+
 create table question_test (
     id serial primary key,
     id_test integer,
@@ -212,13 +214,21 @@ create table question_test (
     foreign key (id_test) references test (id)
 );
 
+
+CREATE VIEW V_question_poste AS SELECT q.id as id_question, q.question, q.coefficient ,t.id_poste FROM question_test as q
+            JOIN test as t ON q.id_test = t.id;
+
+
 CREATE TABLE reponse_postulant (
     ID SERIAL PRIMARY KEY,
     ID_POSTULANT INTEGER,
+    ID_TEST INTEGER,
     ID_QUESTION INTEGER,
-    REPONSE DOUBLE PRECISION,
+    REPONSE INTEGER,
     FOREIGN KEY (ID_POSTULANT) REFERENCES postulant (ID),
-    FOREIGN KEY (ID_QUESTION) REFERENCES question_test (ID)
+    FOREIGN KEY (ID_TEST) REFERENCES test (ID),
+    FOREIGN KEY (ID_QUESTION) REFERENCES question_test (ID),
+    FOREIGN KEY (REPONSE) REFERENCES reponse_test (ID)
 );
 
 create table back_office (
@@ -262,6 +272,7 @@ create table reponse_test (
     foreign key (id_question) references question_test (id)
 );
 
+
 create table entretien (
     id serial primary key,
     id_poste integer,
@@ -270,3 +281,14 @@ create table entretien (
     foreign key (id_postulant) references postulant (id),
     foreign key (id_poste) references poste (id)
 );
+
+CREATE TABLE resultat_test(
+    ID SERIAL PRIMARY KEY,
+    ID_POSTULANT INTEGER,
+    note DOUBLE PRECISION,
+    DATE DATE,
+    FOREIGN KEY (ID_POSTULANT) REFERENCES postulant (id)
+);
+
+CREATE VIEW V_resultat_test AS SELECT resultat_test.id, note, date, nom, prenom FROM resultat_test
+        JOIN postulant ON postulant.ID = resultat_test.ID_POSTULANT;
